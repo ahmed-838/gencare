@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin-components/weeks.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <h2>Add Pregnancy Week</h2>
+    </div>
+    <div class="content">
+      <form action="/weeksManagement" method="POST" enctype="multipart/form-data">
+        <div class="user-details">
+          
+          <!-- Week Number -->
+          <div class="input-box">
+            <span class="details">Week Number</span>
+            <input type="number" name="week_number" placeholder="Enter Week Number" required>
+          </div>
+
+          <!-- Week Color -->
+          <div class="input-box">
+            <span class="details">Week Color</span>
+            <input type="color" name="week_color" id="dashboardColor" value="#9b59b6" required>
+          </div>
+
+          <!-- Week Image URL -->
+          <div class="input-box">
+            <span class="details">Week Image (URL)</span>
+            <input type="file" name="week_image" placeholder="Enter Image URL" required>
+          </div>
+
+          <!-- Week Video Link -->
+          <div class="input-box">
+            <span class="details">Week Video Link</span>
+            <input type="text" name="week_video_link" placeholder="Enter YouTube Video Link" required>
+          </div>
+
+          <!-- Title 1 -->
+          <div class="input-box">
+            <span class="details">Title 1</span>
+            <input type="text" name="title1" placeholder="Enter Title 1" required>
+          </div>
+
+          <!-- Essay 1 -->
+          <div class="input-box">
+            <span class="details">Essay 1</span>
+            <textarea name="essay1" placeholder="Enter Essay 1" required></textarea>
+          </div>
+
+          <!-- Title 2 -->
+          <div class="input-box">
+            <span class="details">Title 2</span>
+            <input type="text" name="title2" placeholder="Enter Title 2" required>
+          </div>
+
+          <!-- Essay 2 -->
+          <div class="input-box">
+            <span class="details">Essay 2</span>
+            <textarea name="essay2" placeholder="Enter Essay 2" required></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="input-box">
+            <button type="submit" class="submit-btn">Add Week</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

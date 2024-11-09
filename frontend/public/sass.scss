@@ -1,0 +1,798 @@
+// Colors
+$primary:#4f2fa2;
+$secondary:#ffb9cc;
+$secondary-hvr:#ffa6be;
+$secondary-2:#95cae4;
+$secondary-hvr-2:#8ad8ff;
+$secondary-3:#FFD9D2;
+// Fonts Functions
+@mixin montserrat-regular {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin montserrat-semibold {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+@mixin raleway-regular {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin raleway-bold {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+@mixin roboto-regular {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+@mixin roboto-medium {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+@mixin roboto-bold {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+// End Of Fonts Functions
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize !important;
+}
+body{
+    scroll-behavior: smooth;
+    background-color: snow;
+}
+@keyframes blop {
+    0%{
+        translate: -7% -10%;
+        border-radius: 35% 65% 60% 40% / 47% 63% 37% 53%;
+    }
+    50%{
+        border-radius: 56% 44% 51% 49% / 19% 63% 37% 81% ;
+        translate: 0% -5%;
+    }
+    100%{
+        border-radius: 57% 43% 72% 28% / 43% 43% 57% 57% ;
+        translate: -7% -10%;
+    }
+}
+@mixin blop ($width,$top,$right,$bottom,$left,$borderRadius){
+    width: $width;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    border-radius: $borderRadius;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1/1;
+}
+.blop{
+    @include blop(450px, -5%, none, none, -4%, none);
+    background: $primary;
+    animation: blop 5s cubic-bezier(.19,-0.01,.87,.99) infinite forwards alternate;
+}
+.logo-img{
+    width: 250px;
+    height: 50px;
+    object-fit: cover;
+}
+.nav-item .active{
+    border-bottom: 1px solid $primary
+}
+ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
+    @include montserrat-semibold();
+    hr{
+        transform: rotate(90deg);
+        width: 40px;
+        height: 2px;
+        background-color: $primary;
+        margin: 20px 0;
+    }
+    button:nth-of-type(1) {
+        background-color: $secondary;
+    }
+    button:nth-of-type(1):hover {
+        background-color: $secondary-hvr;
+    }
+    button:nth-of-type(2) {
+        background-color: $secondary-2;
+    }
+    button:nth-of-type(2):hover {
+        background-color: $secondary-hvr-2;
+    }
+}
+.nav-scroll{
+    width: 100%;
+    transition: 0.4s ease;
+    position: fixed;
+    top: 0;
+}
+#nav{
+    transition: all 0.4s ease;
+    backdrop-filter: blur(15px);
+    z-index: 10;
+}
+.slider{
+    #carouselExample{
+        .carousel-item{
+            .card{
+                background: transparent;
+                border: none;
+                .card-body{
+                    button{
+                        background-color: $secondary;
+                        border-radius: 20px;
+                        @include roboto-bold();
+                    }
+                }
+                .card-title{
+                    @include raleway-bold();
+                    color: $secondary-2;
+                }
+            }
+        }
+        .carousel-control-prev,.carousel-control-next{
+            i{
+                font-size: 25px;
+            }
+        }
+        .carousel-control-prev{
+            translate:  -35px;
+        }
+        .carousel-control-next{
+            translate: 20px;
+        }
+    }
+}
+@media screen and (max-width:991px) {
+    .blop-1{
+        width: 450px !important;
+        margin: auto;
+        left: 0% !important;
+    }
+    swiper-slide{
+        height: 250px !important;
+        .card{
+            height: 100%;
+        }
+    }
+}
+@keyframes blp {
+    0%{
+        border-radius: 15%,48% 52% 45% 55% / 53% 30% 70% 47% ;
+    }
+    25%{
+        border-radius: 35% 65% 33% 67% / 46% 32% 68% 54% ;
+    }
+    50%{
+        border-radius: 47% 53% 58% 42% / 38% 58% 42% 62% ;
+    }
+    75%{
+        border-radius: 67% 33% 78% 22% / 30% 63% 37% 70% ;
+    }
+    100%{
+        border-radius: 15%,48% 52% 45% 55% / 53% 30% 70% 47%;
+    }
+}
+.blop-1{
+    background: url(img/Free-Vector-Hand-drawn-flat-design-sonography-illustration-enhanced.jpeg);
+    @include blop(auto, 0, 0, 0, 15%,48% 52% 45% 55% / 53% 30% 70% 47% );
+    position: relative;
+    animation: blp 4s linear infinite forwards alternate;
+}
+#pregnancy-weeks{
+    h2{
+        @include roboto-bold();
+        color: #4f2fa2
+    }
+    swiper-container{
+        swiper-slide{
+            .card{
+                @include raleway-regular();
+                overflow: hidden;
+                a{
+                    text-decoration: none;
+                    color: black
+                }
+                span{
+                    @include raleway-bold();
+                    font-size: 40px;
+                }
+                .row{
+                    z-index: 5;
+                }
+                img{
+                    width: auto;
+                }
+            }
+            .card::before{
+                content: '';
+                position: absolute;
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                background-color: $secondary-2;
+                top: -25%;
+                left: -10%;
+            }
+            .card::after{
+                content: '';
+                position: absolute;
+                width: 75px;
+                height: 75px;
+                border-radius: 50%;
+                background-color: $secondary;
+                bottom: -25%;
+                right: -10%;
+            }
+        }
+    }
+}
+@mixin stepping-rotate($rotate-angle , $scale){
+    rotate: $rotate-angle;
+    transform: $scale;
+}
+@mixin position($top,$right,$bottom,$left){
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+.blop-2{
+    background: url(img/Birth.gif);
+    @include blop(350px, 30px, -5%, none,none , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    z-index: 1;
+    transition:ease 0.5s;
+}
+.blop-2:hover{
+    @include blop(350px, 5%, -4%, none,none , 56% 44% 39% 61% / 30% 51% 49% 70% );
+}
+.blop-3{
+    background: url(img/baby1.gif);
+    @include blop(350px, 490px, 0, none,-2rem , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-4{
+    background: url(img/baby2.gif);
+    @include blop(350px, 820px, -3rem, none,none , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    @include stepping-rotate(0, scaleX(-1));
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-5{
+    background: url(img/Baby.gif);
+    @include blop(350px, 1200px, none, none,-3rem , 37% 63% 33% 67% / 61% 59% 41% 39%  );
+    @include stepping-rotate(0, scaleX(1));
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-6{
+    background: url(img/Grumpy\ Old\ Baby.gif);
+    @include blop(350px, 1550px, -3rem, none,none , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-7{
+    background: url(img/Swaddled\ Baby.gif);
+    @include blop(350px, 1850px, none, none,-3rem , 37% 63% 33% 67% / 61% 59% 41% 39%);
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-8{
+    background: url(img/Baby\ Chester.gif);
+    @include blop(350px, 2250px, -3rem, none,none , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-9{
+    background: url(img/Various\ Gifs.gif);
+    @include blop(350px, 2650px, none, none,-3rem , 49% 51% 35% 65% / 64% 39% 61% 36%);
+    scale: -1 1;
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-10{
+    background: url(img/28\ Gross\ Things\ About\ Having\ A\ Baby\ That\ No\ One\ Ever\ Tells\ You\,\ But\ I\ Will.gif);
+    @include blop(350px, 3150px, -3rem, none,none , 31% 69% 52% 48% / 43% 43% 57% 57%);
+    scale: -1 1;
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-11{
+    background: url(img/MothersDay\ 1.gif);
+    @include blop(350px, 3550px,none, none, -3rem , 31% 69% 52% 48% / 43% 43% 57% 57%);
+    scale: -1 1;
+    z-index: -1;
+    transition:ease 0.5s;
+}
+.blop-12{
+    background: url(img/Trending\ GIF\ baby\ pregnant\ birth.gif);
+    @include blop(350px, 3950px,-3rem, none, none , 60% 40% 53% 47% / 46% 59% 41% 54% );
+    z-index: -1;
+    transition:ease 0.5s;
+}
+
+.abcBlop1{
+    background-color: $secondary-2;
+    @include blop(100px, none, none, none, none, 31% 69% 52% 48% / 43% 43% 57% 57% );
+    transition: all 0.2s ease;
+    filter: drop-shadow(2px 2px 10px gray);
+}
+.abcBlop1:hover{
+    @include blop(100px, none, none, none, none, 69% 31% 60% 40% / 37% 60% 40% 63%  );
+}
+.abcBlop2{
+    background-color:$secondary;
+    @include blop(100px, none, none, none, none, 31% 69% 52% 48% / 43% 43% 57% 57% );
+    transition: all 0.2s ease;
+    filter: drop-shadow(2px 2px 10px gray);
+}
+.abcBlop2:hover{
+    translate: 1px -5px;
+    @include blop(100px, none, none, none, none, 27% 73% 24% 76% / 64% 32% 68% 36% );
+}
+#baby-names{
+    overflow: hidden;
+    svg{
+        position: absolute;
+        z-index: -1;
+        top: -30%;
+    }
+    .stations-container{
+        height: 700px ;
+    }
+    h2{
+        color: $primary;
+        @include roboto-bold();
+    }
+    .station{
+        width: auto;
+        img{
+            width: 110px;
+            @include stepping-rotate(0deg , scaleX(-1));
+            filter: drop-shadow(5px -5px 5px gray);
+        }
+    }
+    .steps{
+        .step{
+            img{
+                width: 50px;
+                filter: drop-shadow(5px 5px 5px black);
+            }
+            position: absolute;
+        }
+        .step-1{
+            @include stepping-rotate(110deg, none);
+            @include position(20px, none, none, 15%)
+        }
+        .step-2{
+            @include position(100px, none, none, 28%);
+            @include stepping-rotate(130deg, none);
+        }
+        .step-3{
+            @include position(180px, none, none, 55%);
+            @include stepping-rotate(140deg, none);
+        }
+        .step-4{
+            @include position(300px,none ,none ,70% );
+            @include stepping-rotate(90deg , none);
+        }
+        .step-5{
+            @include position(350px,none ,none ,72% );
+            @include stepping-rotate(205deg , none);
+        }
+        .step-6{
+            @include position(400px,none ,none ,62% );
+            @include stepping-rotate(245deg , none);
+        }
+        .step-7{
+            @include position(480px,none ,none ,35% );
+            @include stepping-rotate(240deg , none);
+        }
+        .step-8{
+            @include position(550px,none ,none ,25% );
+            @include stepping-rotate(200deg , none);
+        }
+        .step-9{
+            @include position(600px,none ,none ,23% );
+            @include stepping-rotate(140deg , none);
+        }
+        .step-10{
+            @include position(650px,none ,none ,35% );
+            @include stepping-rotate(120deg , none);
+        }
+        .step-11{
+            @include position(750px,none ,none ,60% );
+            @include stepping-rotate(130deg , none);
+        }
+        .step-12{
+            @include position(800px,none ,none ,75% );
+            @include stepping-rotate(95deg , none);
+        }
+        .step-13{
+            @include position(850px,none ,none ,80% );
+            @include stepping-rotate(190deg , none);
+        }
+        .step-14{
+            @include position(900px,none ,none ,70% );
+            @include stepping-rotate(230deg , none);
+        }
+        .step-15{
+            @include position(1000px,none ,none ,45% );
+            @include stepping-rotate(240deg , none);
+        }
+        .step-16{
+            @include position(1050px,none ,none ,30% );
+            @include stepping-rotate(250deg , none);
+        }
+        .step-17{
+            @include position(1080px,none ,none ,30% );
+            @include stepping-rotate(125deg , none);
+        }
+        .step-18{
+            @include position(1150px,none ,none ,43% );
+            @include stepping-rotate(95deg , none);
+        }
+        .step-19{
+            @include position(1240px,none ,none ,63% );
+            @include stepping-rotate(105deg , none);
+        }
+        .step-20{
+            @include position(1280px,none ,none ,73% );
+            @include stepping-rotate(120deg , none);
+        }
+        .step-21{
+            @include position(1320px,none ,none ,82% );
+            @include stepping-rotate(195deg , none);
+        }
+        .step-22{
+            @include position(1380px,none ,none ,70% );
+            @include stepping-rotate(250deg , none);
+        }
+        .step-23{
+            @include position(1470px,none ,none ,33% );
+            @include stepping-rotate(215deg , none);
+        }
+        .step-24{
+            @include position(1550px,none ,none ,22% );
+            @include stepping-rotate(245deg , none);
+        }
+        .step-25{
+            @include position(1600px,none ,none ,15% );
+            @include stepping-rotate(115deg , none);
+        }
+        .step-26{
+            @include position(1700px,none ,none ,30% );
+            @include stepping-rotate(100deg , none);
+        }
+        .step-27{
+            @include position(1800px,none ,none ,56% );
+            @include stepping-rotate(145deg , none);
+        }
+        .step-28{
+            @include position(1900px,none ,none ,70% );
+            @include stepping-rotate(105deg , none);
+        }
+        .step-29{
+            @include position(1950px,none ,none ,78% );
+            @include stepping-rotate(220deg , none);
+        }
+        .step-30{
+            @include position(2050px,none ,none ,65% );
+            @include stepping-rotate(250deg , none);
+        }
+        .step-31{
+            @include position(2150px,none ,none ,40% );
+            @include stepping-rotate(217deg , none);
+        }
+        .step-32{
+            @include position(2230px,none ,none ,25% );
+            @include stepping-rotate(235deg , none);
+        }
+        .step-33{
+            @include position(2300px,none ,none ,25% );
+            @include stepping-rotate(130deg , none);
+        }
+        .step-34{
+            @include position(2380px,none ,none, 38% );
+            @include stepping-rotate(100deg , none);
+        }
+        .step-35{
+            @include position(2500px,none ,none, 59% );
+            @include stepping-rotate(105deg , none);
+        }
+        .step-36{
+            @include position(2590px,none ,none, 70% );
+            @include stepping-rotate(120deg , none);
+        }
+        .step-37{
+            @include position(2630px,none ,none, 75% );
+            @include stepping-rotate(220deg , none);
+        }
+        .step-38{
+            @include position(2700px,none ,none, 60% );
+            @include stepping-rotate(250deg , none);
+        }
+        .step-39{
+            @include position(2800px,none ,none, 40% );
+            @include stepping-rotate(230deg , none);
+        }
+        .step-40{
+            @include position(2890px,none ,none, 27% );
+            @include stepping-rotate(245deg , none);
+        }
+        .step-41{
+            @include position(2920px,none ,none, 25% );
+            @include stepping-rotate(130deg , none);
+        }
+        .step-42{
+            @include position(3000px,none ,none, 40% );
+            @include stepping-rotate(110deg , none);
+        }
+        .step-43{
+            @include position(3100px,none ,none, 59% );
+            @include stepping-rotate(100deg , none);
+        }
+        .step-44{
+            @include position(3190px,none ,none, 70% );
+            @include stepping-rotate(125deg , none);
+        }
+        .step-45{
+            @include position(3250px,none ,none, 74% );
+            @include stepping-rotate(225deg , none);
+        }
+        .step-46{
+            @include position(3300px,none ,none, 61% );
+            @include stepping-rotate(250deg , none);
+        }
+        .step-47{
+            @include position(3390px,none ,none, 38% );
+            @include stepping-rotate(210deg , none);
+        }
+        .step-48{
+            @include position(3470px,none ,none, 24% );
+            @include stepping-rotate(245deg , none);
+        }
+        .step-49{
+            @include position(3500px,none ,none, 22% );
+            @include stepping-rotate(110deg , none);
+        }
+        .step-50{
+            @include position(3550px,none ,none, 36% );
+            @include stepping-rotate(100deg , none);
+        }
+    }
+    .station1{
+        @include position(none, none ,none ,none);
+    }
+    .station2{
+        @include position(150px, none,none , 40%);
+    }
+    .station3{
+        @include stepping-rotate(0, none);
+        @include position(300px, none , none ,90%);
+        translate: -100%;
+    }
+    .station4{
+        @include position(400px, 45%, none,none );
+    }
+    .station5{
+        @include position(600px, none, none, 10%);
+    }
+    .station6{
+        @include position(650px, 45%, none, none)
+    }
+    .station7{
+        @include position(800px, none, none, 85%)
+    }
+    .station8{
+        @include position(900px, 35%, none, none)
+    }
+    .station9{
+        @include position(1050px, none, none,18%)
+    }
+    .station10{
+        @include position(1140px,40%, none, none);
+        // transform: skew(0, 8deg);
+    }
+    .station11{
+        @include position(1280px, none, none,85%);
+        img{
+            @include stepping-rotate(0, scaleX(1))
+        }
+    }
+    .station12{
+        @include position(1380px,45%,none, none);
+        img{
+            @include stepping-rotate(0, scaleX(1))
+        }
+    }
+    .station13{
+        @include position(1550px, none, none,5%);
+        img{
+            @include stepping-rotate(0, scaleX(1))
+        }
+    }
+    .station14{
+        @include position(1690px, 48%, none, none);
+        img{
+            @include stepping-rotate(0 , scaleX(1));
+        }
+    }
+    .station15{
+        @include position(1900px, none, none,85%);
+    }
+    .station16{
+        @include position(2050px, 45%, none,none);
+    }
+    .station17{
+        @include position(2300px,none, none,12%);
+        img{
+            @include stepping-rotate(0 ,scaleX(1) )
+        }
+    }
+    .station18{
+        @include position(2400px,45%, none,none);
+    }
+    .station19{
+        @include position(2600px,none, none,80%);
+    }
+    .station20{
+        @include position(2700px,45%, none,none);
+    }
+    .station21{
+        @include position(2900px,none, none,13%);
+    }
+    .station22{
+        @include position(2990px,43%, none,none);
+    }
+    .station23{
+        @include position(3180px,none, none,80%);
+    }
+    .station24{
+        @include position(3300px,45%, none,none);
+    }
+    .station25{
+        @include position(3500px,none, none,10%);
+    }
+    .station26{
+        @include position(3560px,45%, none,none);
+        img{
+            @include stepping-rotate(0, scaleX(1))
+        }
+    }
+    button{
+        @include roboto-bold();
+        background-color: $primary ;
+        color: white;
+        border-radius: 20px;
+    }
+}
+#aiModel{
+    .blop-13{
+        background: $secondary-2;
+        @include blop(550px, -15%, none, none, none , 60% 40% 53% 47% / 46% 59% 41% 54% );
+        h2{
+            @include raleway-regular()
+        }
+    }
+    .blop-14{
+        background: $primary;
+        @include blop(350px, none, 3%,-15%, none ,50% );
+        height: 350px;
+        img{
+            width: 100%;
+            translate :0 -25%;
+        }
+    }
+    h2{
+        color: $primary;
+        @include roboto-bold();
+    }
+    button{
+        background-color: $secondary;
+        border-radius: 20px;
+        width: 5rem;
+        @include roboto-bold();
+    }
+    .col-8 {
+        .card{
+            width: 45%;
+            height: auto;
+            border-left: 5px solid $primary;
+            img{
+                width: auto;
+                object-fit: cover;
+            }
+            // .card-body{
+
+            // }
+        }
+    }
+    .col-4{
+        height: 500px;
+    }
+}
+#articles::before{
+    content: '';
+    position: absolute;
+    background: $secondary-2;
+    @include blop(300px, -5%, none, none, -5%, 53% 47% 70% 30% / 36% 63% 37% 64% );
+    z-index: -1;
+    animation: blop 4s linear forwards alternate infinite;
+}
+#articles::after{
+    content: '';
+    position: absolute;
+    background: $secondary;
+    @include blop(300px, none, -5%, -15%, none, 53% 47% 70% 30% / 36% 63% 37% 64% );
+    z-index: -1;
+    animation: blop 4s linear forwards alternate infinite;
+}
+#articles{
+    @include raleway-regular();
+    .left , .right{
+        width: 40%;
+        height: auto;
+        overflow: hidden;
+        filter: drop-shadow(0px 5px 10px gray);
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 2/3;
+        }
+    }
+    .left{
+        translate: 0 -5%;
+    }
+    .right{
+        translate: 0 5%;
+    }
+    h2{
+        color: $primary;
+        @include roboto-bold()
+    }
+    .card{
+        border-color: $primary !important;
+    }
+    button{
+        background-color: $primary;
+        border-radius: 20px;
+    }
+}
+// #footer::after{
+//     content: '';
+//     position: absolute;
+//     background: $secondary-hvr;
+//     @include blop(350px, -80%, 50%, none, none, 53% 47% 52% 48% / 59% 76% 24% 41%  );
+//     translate: 50% 0;
+//     z-index: 1;
+// }
+#footer{
+    .blop-15{
+        @include blop(350px, -0%, 50%, none, none, 53% 47% 52% 48% / 59% 76% 24% 41% );
+        background: $secondary-hvr;
+    }
+}

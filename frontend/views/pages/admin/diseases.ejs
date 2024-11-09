@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin-components/weeks.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      <h2>Add Disease Information</h2>
+    </div>
+    <div class="content">
+        <form action="/diseasesManagement/add" method="POST">
+        <div class="user-details">
+          
+          <!-- Disease Name -->
+          <div class="input-box">
+            <span class="details">Disease Name</span>
+            <input type="text" name="disease_name" placeholder="Enter Disease Name" required>
+          </div>
+
+          <!-- Disease Image URL -->
+          <div class="input-box">
+            <span class="details">Disease Image (URL)</span>
+            <input type="text" name="disease_image" placeholder="Enter Image URL" required>
+          </div>
+
+          <!-- Disease Summary -->
+          <div class="input-box">
+            <span class="details">Disease Summary</span>
+            <textarea name="disease_summary" placeholder="Enter Disease Summary" required></textarea>
+          </div>
+
+          <!-- Disease Body -->
+          <div class="input-box">
+            <span class="details">Disease Body</span>
+            <textarea name="disease_body" placeholder="Enter Disease Description" required></textarea>
+          </div>
+
+          <!-- Expected Pregnancy Period -->
+          <div class="input-box">
+            <span class="details">Expected Pregnancy Period</span>
+            <input type="text" name="expected_pregnancy_period" placeholder="Enter Expected Pregnancy Period" required>
+          </div>
+
+          <!-- Disease Details Link -->
+          <div class="input-box">
+            <span class="details">Disease Details Link</span>
+            <input type="text" name="disease_details_link" placeholder="Enter Disease Details Link" required>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="input-box">
+            <button type="submit" class="submit-btn">Add Disease</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

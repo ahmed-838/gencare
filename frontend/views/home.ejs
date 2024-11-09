@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Care</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/home/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/home/node_modules\animate.css\animate.min.css">
+    <link rel="stylesheet" href="sass.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-lg">
+        <div class="blop position-absolute"></div>
+    </div>
+
+    <div class="animate__animated animate__backInDown container-fluid mb-3 g-0 " id="nav">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <img src="img/Logo/Web-Logo-removebg-preview.png" class="logo-img" alt="">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item mx-1 text-center">
+                    <a class="nav-link active" onclick="handleClick(this)" aria-current="page" href="dashboard">Management</a>
+                  </li>
+                  <li class="nav-item mx-1 text-center">
+                    <a class="nav-link active" onclick="handleClick(this)" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item mx-1 text-center">
+                    <a class="nav-link" onclick="handleClick(this)" href="#pregnancy-weeks">Pregnancy Weeks</a>
+                  </li>
+                  <li class="nav-item mx-1 text-center">
+                    <a class="nav-link" onclick="handleClick(this)" href="#baby-names">Baby Names</a>
+                  </li>
+                  <li class="nav-item mx-1 text-center">
+                    <a class="nav-link" onclick="handleClick(this)" href="#aiModel">AI test</a>
+                  </li>
+                  <button class="btn mb-2 mb-lg-0">Log In</button>
+                  <hr class="d-none d-md-block">
+                  <button class="btn mb-2 mb-lg-0">Sign Up</button>
+                </ul>
+              </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid slider" id="slider">
+        <div class="container">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+
+                  <div class="carousel-item active ">
+                    <div class="card mb-3" >
+                        <div class="row g-0">
+                          <div class="col-md-4 position-relative">
+                            <img src="img/Pregnant Mother.png" class="img-fluid" alt="...">
+                          </div>
+                          <div class="col-md-8 d-flex align-items-center">
+                            <div class="card-body text-center">
+                              <h1 class="card-title opacity-0">What does your <br> baby look like now</h1>
+                              <button class="btn px-3">
+                                <a href="#pregnancy-weeks" class="text-decoration-none text-dark">show my baby</a>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="card mb-3" >
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="img/dow-removebg-preview.png" class="img-fluid rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8 d-flex align-items-center">
+                            <div class="card-body text-center">
+                              <h1 class="card-title opacity-0">want baby names?<br>check our name list</h1>
+                              <button class="btn px-3"><a class="text-decoration-none text-dark" href="#baby-names">baby names</a></button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item">
+                    <div class="card mb-3" >
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <div class="blop-1 border border-dark"></div>
+                          </div>
+                          <div class="col-md-8 d-flex align-items-center">
+                            <div class="card-body text-center">
+                              <h1 class="card-title opacity-0">check possibilities of <br>fetal disease</h1>
+                              <button class="btn px-3"><a href="#aiModel" class="text-decoration-none text-dark">AI test</a></button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span aria-hidden="true">
+                    <i class="fa-solid fa-angle-left" style="color: #000000;"></i>
+                  </span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span aria-hidden="true">
+                    <i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+                  </span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+    </div>
+    
+
+<!-- ahmed updates  -->
+
+  <div class="container-fluid my-4" id="pregnancy-weeks">
+      <h2 class="text-center mb-4 animate__animated animate__fadeInLeft">pregnancy week by week</h2>
+  
+      <swiper-container class="mySwiper" slides-per-view="6" space-between="20" free-mode="true">
+      </swiper-container>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const weeksContainer = document.querySelector('.mySwiper');
+    if (weeksContainer) {
+        fetch('http://localhost:3000/weeksManagement/basic')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch weeks');
+                }
+                return response.json();
+            })
+            .then(weeks => {
+                console.log(weeks); 
+                
+                const weeksHTML = weeks.map(week => {
+    return `
+        <swiper-slide>
+            <div class="card">
+                <div class="row h-100 g-0">
+                    <div class="col-12 col-lg-7">
+                        <div class="card-body text-center text-lg-start">
+                            <a href="/weeksManagement/${week.week_number}" target="_blank">
+                                <span>${week.week_number}</span><br>weeks<br>pregnant
+                            </a>
+                        </div>
+                    </div>
+                            <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
+                                <img src="http://localhost:3000${week.week_image}" alt="Week ${week.week_number}">
+                            </div>
+                </div>
+            </div>
+        </swiper-slide>
+    `;
+}).join('');
+
+                
+                weeksContainer.innerHTML = weeksHTML;
+            })
+            .catch(error => {
+                console.error('Error fetching weeks:', error);
+                weeksContainer.innerHTML = '<p>حدث خطأ في تحميل البيانات</p>';
+            });
+    } else {
+        console.error("Element with class 'mySwiper' not found.");
+    }
+});
+
+</script>
+
+    
+    <div class="container-fluid g-0 position-relative mb-5" id="baby-names">
+      
+      <div class="container-fluid g-0 position-relative">
+        <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><style>
+          .path-0{
+            animation:pathAnim-0 4s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+          @keyframes pathAnim-0{
+            0%{
+              d: path("M 0,400 L 0,100 C 34.19132894132433,77.82607399799772 68.38265788264866,55.652147995995435 101,71 C 133.61734211735134,86.34785200400457 164.66069741072965,139.21748201401596 205,187 C 245.33930258927035,234.78251798598404 294.97455247443287,277.47792394794067 340,285 C 385.02544752556713,292.52207605205933 425.4410926915388,264.87082219422126 456,292 C 486.5589073084612,319.12917780577874 507.26107675941205,401.03878727517434 543,421 C 578.738923240588,440.96121272482566 629.5146002708135,398.9740287050813 670,425 C 710.4853997291865,451.0259712949187 740.6805221573342,545.0650979045002 771,591 C 801.3194778426658,636.9349020954998 831.7633110998496,634.7655796769178 870,633 C 908.2366889001504,631.2344203230822 954.2662334432675,629.8725833878282 991,667 C 1027.7337665567325,704.1274166121718 1055.1717551270801,779.7440867717697 1096,822 C 1136.8282448729199,864.2559132282303 1191.0467460484117,873.1510695250928 1230,876 C 1268.9532539515883,878.8489304749072 1292.641260679274,875.6516351278595 1334,906 C 1375.358739320726,936.3483648721405 1434.3882112344932,1000.2423899634687 1455,1034 C 1475.6117887655068,1067.7576100365313 1457.8058943827534,1071.3788050182657 1440,1075 L 1440,400 L 0,400 Z");
+            }
+            25%{
+              d: path("M 0,400 L 0,100 C 27.70535444553623,113.0119382961209 55.41070889107246,126.0238765922418 98,129 C 140.58929110892754,131.9761234077582 198.06251888124638,124.9164319271537 232,140 C 265.9374811187536,155.0835680728463 276.339215583942,192.31039569914333 312,222 C 347.660784416058,251.68960430085667 408.5806187829855,273.8419852762729 448,292 C 487.4193812170145,310.1580147237271 505.3383092841158,324.32166319576504 541,359 C 576.6616907158842,393.67833680423496 630.0661440805512,448.87136194066704 676,486 C 721.9338559194488,523.128638059333 760.3971143936792,542.1928890415664 794,555 C 827.6028856063208,567.8071109584336 856.3453983447321,574.357081893067 892,597 C 927.6546016552679,619.642918106933 970.2212922273925,658.3787833861657 1011,690 C 1051.7787077726075,721.6212166138343 1090.7694327456986,746.1277845622704 1123,776 C 1155.2305672543014,805.8722154377296 1180.7009767898128,841.1100783647524 1217,861 C 1253.2990232101872,880.8899216352476 1300.4266600950502,885.4319019787205 1338,912 C 1375.5733399049498,938.5680980212795 1403.5923828299856,987.1623137203655 1419,1018 C 1434.4076171700144,1048.8376862796345 1437.2038085850072,1061.9188431398172 1440,1075 L 1440,400 L 0,400 Z");
+            }
+            50%{
+              d: path("M 0,400 L 0,100 C 41.04385381960206,83.77450157256851 82.08770763920413,67.54900314513702 124,88 C 165.91229236079587,108.45099685486298 208.69302326278563,165.5784889920204 241,207 C 273.30697673721437,248.4215110079796 295.14019930965327,274.1370408867812 328,278 C 360.85980069034673,281.8629591132188 404.74617949860135,263.87334746085475 444,282 C 483.25382050139865,300.12665253914525 517.8750826959414,354.3695692697998 551,385 C 584.1249173040586,415.6304307302002 615.7534897176326,422.6483754599461 657,434 C 698.2465102823674,445.3516245400539 749.1109584335279,461.03692889041577 789,509 C 828.8890415664721,556.9630711095842 857.8026765482556,637.2039089783912 892,674 C 926.1973234517444,710.7960910216088 965.6783353734504,704.1474351960196 996,707 C 1026.3216646265496,709.8525648039804 1047.483981957943,722.2063502375306 1088,756 C 1128.516018042057,789.7936497624694 1188.3857367947783,845.0271638538578 1227,867 C 1265.6142632052217,888.9728361461422 1282.9730708629443,877.6849943470382 1320,909 C 1357.0269291370557,940.3150056529618 1413.7219797534444,1014.2328587579891 1437,1049 C 1460.2780202465556,1083.767141242011 1450.1390101232778,1079.3835706210054 1440,1075 L 1440,400 L 0,400 Z");
+            }
+            75%{
+              d: path("M 0,400 L 0,100 C 37.79461121563408,95.93620536991165 75.58922243126815,91.87241073982328 115,95 C 154.41077756873185,98.12758926017672 195.4377214905614,108.44656241061853 233,139 C 270.5622785094386,169.55343758938147 304.65989160648627,220.34133961770254 335,259 C 365.34010839351373,297.65866038229746 391.9227120834935,324.1880791185713 424,351 C 456.0772879165065,377.8119208814287 493.64926005953976,404.9063439080123 539,439 C 584.3507399404602,473.0936560919877 637.4802476783476,514.1865452493796 672,516 C 706.5197523216524,517.8134547506204 722.4297492270697,480.34747509446936 759,511 C 795.5702507729303,541.6525249055306 852.8007554133735,640.4235543727433 889,674 C 925.1992445866265,707.5764456272567 940.3672291194366,675.9583074145573 979,681 C 1017.6327708805634,686.0416925854427 1079.7303281088803,727.7432159690273 1117,771 C 1154.2696718911197,814.2567840309727 1166.7114584450426,859.0688287093328 1197,875 C 1227.2885415549574,890.9311712906672 1275.4238381109499,877.9814691936413 1319,889 C 1362.5761618890501,900.0185308063587 1401.5931891111572,935.0052945161026 1421,970 C 1440.4068108888428,1004.9947054838974 1440.2034054444214,1039.9973527419488 1440,1075 L 1440,400 L 0,400 Z");
+            }
+            100%{
+              d: path("M 0,400 L 0,100 C 34.19132894132433,77.82607399799772 68.38265788264866,55.652147995995435 101,71 C 133.61734211735134,86.34785200400457 164.66069741072965,139.21748201401596 205,187 C 245.33930258927035,234.78251798598404 294.97455247443287,277.47792394794067 340,285 C 385.02544752556713,292.52207605205933 425.4410926915388,264.87082219422126 456,292 C 486.5589073084612,319.12917780577874 507.26107675941205,401.03878727517434 543,421 C 578.738923240588,440.96121272482566 629.5146002708135,398.9740287050813 670,425 C 710.4853997291865,451.0259712949187 740.6805221573342,545.0650979045002 771,591 C 801.3194778426658,636.9349020954998 831.7633110998496,634.7655796769178 870,633 C 908.2366889001504,631.2344203230822 954.2662334432675,629.8725833878282 991,667 C 1027.7337665567325,704.1274166121718 1055.1717551270801,779.7440867717697 1096,822 C 1136.8282448729199,864.2559132282303 1191.0467460484117,873.1510695250928 1230,876 C 1268.9532539515883,878.8489304749072 1292.641260679274,875.6516351278595 1334,906 C 1375.358739320726,936.3483648721405 1434.3882112344932,1000.2423899634687 1455,1034 C 1475.6117887655068,1067.7576100365313 1457.8058943827534,1071.3788050182657 1440,1075 L 1440,400 L 0,400 Z");
+            }
+          }</style><path d="M 0,400 L 0,100 C 34.19132894132433,77.82607399799772 68.38265788264866,55.652147995995435 101,71 C 133.61734211735134,86.34785200400457 164.66069741072965,139.21748201401596 205,187 C 245.33930258927035,234.78251798598404 294.97455247443287,277.47792394794067 340,285 C 385.02544752556713,292.52207605205933 425.4410926915388,264.87082219422126 456,292 C 486.5589073084612,319.12917780577874 507.26107675941205,401.03878727517434 543,421 C 578.738923240588,440.96121272482566 629.5146002708135,398.9740287050813 670,425 C 710.4853997291865,451.0259712949187 740.6805221573342,545.0650979045002 771,591 C 801.3194778426658,636.9349020954998 831.7633110998496,634.7655796769178 870,633 C 908.2366889001504,631.2344203230822 954.2662334432675,629.8725833878282 991,667 C 1027.7337665567325,704.1274166121718 1055.1717551270801,779.7440867717697 1096,822 C 1136.8282448729199,864.2559132282303 1191.0467460484117,873.1510695250928 1230,876 C 1268.9532539515883,878.8489304749072 1292.641260679274,875.6516351278595 1334,906 C 1375.358739320726,936.3483648721405 1434.3882112344932,1000.2423899634687 1455,1034 C 1475.6117887655068,1067.7576100365313 1457.8058943827534,1071.3788050182657 1440,1075 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#4f2fa2" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path><style>
+          .path-1{
+            animation:pathAnim-1 4s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+          @keyframes pathAnim-1{
+            0%{
+              d: path("M 0,400 L 0,233 C 34.804517763599236,236.82233569857922 69.60903552719847,240.64467139715845 107,253 C 144.39096447280153,265.35532860284155 184.36837565480533,286.2436501099456 218,304 C 251.63162434519467,321.7563498900544 278.91746185358005,336.38072816305925 313,362 C 347.08253814641995,387.61927183694075 387.96177693087446,424.2334372378173 435,462 C 482.03822306912554,499.7665627621827 535.2354304229223,538.6855228856717 570,557 C 604.7645695770777,575.3144771143283 621.0965013774368,573.0244712194957 656,597 C 690.9034986225632,620.9755287805043 744.3785640673309,671.2165922363449 789,711 C 833.6214359326691,750.7834077636551 869.38924235324,780.1091598351245 904,789 C 938.61075764676,797.8908401648755 972.0644665197092,786.3467684231568 1008,805 C 1043.9355334802908,823.6532315768432 1082.352891567923,872.5037664722481 1113,910 C 1143.647108432077,947.4962335277519 1166.5239672085982,973.6381656878509 1205,994 C 1243.4760327914018,1014.3618343121491 1297.551239597685,1028.943570776348 1338,1060 C 1378.448760402315,1091.056429223652 1405.2710744006615,1138.5875512067578 1420,1166 C 1434.7289255993385,1193.4124487932422 1437.3644627996691,1200.706224396621 1440,1208 L 1440,400 L 0,400 Z");
+            }
+            25%{
+              d: path("M 0,400 L 0,233 C 28.151133501602693,250.2829301882054 56.30226700320539,267.5658603764108 90,266 C 123.69773299679461,264.4341396235892 162.9420654887812,244.0194886825622 205,273 C 247.0579345112188,301.9805113174378 291.92947104166973,380.3561848933404 331,424 C 370.07052895833027,467.6438151066596 403.34005034453975,476.55577174407597 437,499 C 470.65994965546025,521.444228255924 504.7103275801712,557.4207281303557 545,570 C 585.2896724198288,582.5792718696443 631.8186393347752,571.7613157345014 670,599 C 708.1813606652248,626.2386842654986 738.0151150807283,691.5340089316387 774,716 C 809.9848849192717,740.4659910683613 852.1209003423118,724.1026485389441 889,747 C 925.8790996576882,769.8973514610559 957.5012835500244,832.0553969125848 988,853 C 1018.4987164499756,873.9446030874152 1047.8739654575902,853.6757638107163 1089,886 C 1130.1260345424098,918.3242361892837 1183.002854619615,1003.2415478445505 1220,1024 C 1256.997145380385,1044.7584521554495 1278.1146160639498,1001.3580448110827 1315,1013 C 1351.8853839360502,1024.6419551889173 1404.5386811245858,1091.3262729111193 1428,1133 C 1451.4613188754142,1174.6737270888807 1445.7306594377071,1191.3368635444403 1440,1208 L 1440,400 L 0,400 Z");
+            }
+            50%{
+              d: path("M 0,400 L 0,233 C 37.73411103515083,238.78250885621583 75.46822207030166,244.56501771243165 109,264 C 142.53177792969834,283.43498228756835 171.86122275394413,316.5224380064892 212,331 C 252.13877724605587,345.4775619935108 303.0868869139217,341.34523026161145 339,360 C 374.9131130860783,378.65476973838855 395.7912295903691,420.0966409470649 428,459 C 460.2087704096309,497.9033590529351 503.74819472460183,534.2682059501288 545,564 C 586.2518052753982,593.7317940498712 625.2159915112233,616.8305352524196 659,637 C 692.7840084887767,657.1694647475804 721.387839230505,674.4096530401924 763,706 C 804.612160769495,737.5903469598076 859.2326515667569,783.5308525868107 899,807 C 938.7673484332431,830.4691474131893 963.6815545024676,831.4669366125644 1000,838 C 1036.3184454975324,844.5330633874356 1084.0411304233721,856.6014009629316 1125,896 C 1165.9588695766279,935.3985990370684 1200.1539238040446,1002.127459535709 1233,1031 C 1265.8460761959554,1059.872540464291 1297.3431743604494,1050.8887608942323 1334,1066 C 1370.6568256395506,1081.1112391057677 1412.4733787541572,1120.3174968873623 1431,1148 C 1449.5266212458428,1175.6825031126377 1444.7633106229214,1191.8412515563189 1440,1208 L 1440,400 L 0,400 Z");
+            }
+            75%{
+              d: path("M 0,400 L 0,233 C 33.6132882958688,200.15062867311354 67.2265765917376,167.30125734622712 109,186 C 150.7734234082624,204.69874265377288 200.70698192891837,274.94559928820513 241,313 C 281.29301807108163,351.05440071179487 311.94549569258896,356.91634550095245 340,366 C 368.05450430741104,375.08365449904755 393.5110353007258,387.38901870798514 425,417 C 456.4889646992742,446.61098129201486 494.0103631045082,493.5275796671069 537,541 C 579.9896368954918,588.4724203328931 628.4475122812414,636.5006626235873 671,645 C 713.5524877187586,653.4993373764127 750.1995877705258,622.4697698385435 787,648 C 823.8004122294742,673.5302301614565 860.7541366366561,755.6202580222388 901,781 C 941.2458633633439,806.3797419777612 984.7838656828501,775.0491980725016 1017,784 C 1049.21613431715,792.9508019274984 1070.1104006319433,842.182949687755 1097,876 C 1123.8895993680567,909.817050312245 1156.774531789376,928.2190031764779 1198,969 C 1239.225468210624,1009.7809968235221 1288.7914722105527,1072.9410376063329 1336,1099 C 1383.2085277894473,1125.0589623936671 1428.0595793684136,1114.0168463981906 1445,1126 C 1461.9404206315864,1137.9831536018094 1450.9702103157933,1172.9915768009046 1440,1208 L 1440,400 L 0,400 Z");
+            }
+            100%{
+              d: path("M 0,400 L 0,233 C 34.804517763599236,236.82233569857922 69.60903552719847,240.64467139715845 107,253 C 144.39096447280153,265.35532860284155 184.36837565480533,286.2436501099456 218,304 C 251.63162434519467,321.7563498900544 278.91746185358005,336.38072816305925 313,362 C 347.08253814641995,387.61927183694075 387.96177693087446,424.2334372378173 435,462 C 482.03822306912554,499.7665627621827 535.2354304229223,538.6855228856717 570,557 C 604.7645695770777,575.3144771143283 621.0965013774368,573.0244712194957 656,597 C 690.9034986225632,620.9755287805043 744.3785640673309,671.2165922363449 789,711 C 833.6214359326691,750.7834077636551 869.38924235324,780.1091598351245 904,789 C 938.61075764676,797.8908401648755 972.0644665197092,786.3467684231568 1008,805 C 1043.9355334802908,823.6532315768432 1082.352891567923,872.5037664722481 1113,910 C 1143.647108432077,947.4962335277519 1166.5239672085982,973.6381656878509 1205,994 C 1243.4760327914018,1014.3618343121491 1297.551239597685,1028.943570776348 1338,1060 C 1378.448760402315,1091.056429223652 1405.2710744006615,1138.5875512067578 1420,1166 C 1434.7289255993385,1193.4124487932422 1437.3644627996691,1200.706224396621 1440,1208 L 1440,400 L 0,400 Z");
+            }
+          }</style><path d="M 0,400 L 0,233 C 34.804517763599236,236.82233569857922 69.60903552719847,240.64467139715845 107,253 C 144.39096447280153,265.35532860284155 184.36837565480533,286.2436501099456 218,304 C 251.63162434519467,321.7563498900544 278.91746185358005,336.38072816305925 313,362 C 347.08253814641995,387.61927183694075 387.96177693087446,424.2334372378173 435,462 C 482.03822306912554,499.7665627621827 535.2354304229223,538.6855228856717 570,557 C 604.7645695770777,575.3144771143283 621.0965013774368,573.0244712194957 656,597 C 690.9034986225632,620.9755287805043 744.3785640673309,671.2165922363449 789,711 C 833.6214359326691,750.7834077636551 869.38924235324,780.1091598351245 904,789 C 938.61075764676,797.8908401648755 972.0644665197092,786.3467684231568 1008,805 C 1043.9355334802908,823.6532315768432 1082.352891567923,872.5037664722481 1113,910 C 1143.647108432077,947.4962335277519 1166.5239672085982,973.6381656878509 1205,994 C 1243.4760327914018,1014.3618343121491 1297.551239597685,1028.943570776348 1338,1060 C 1378.448760402315,1091.056429223652 1405.2710744006615,1138.5875512067578 1420,1166 C 1434.7289255993385,1193.4124487932422 1437.3644627996691,1200.706224396621 1440,1208 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#4f2fa2" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 200)"></path></svg>
+        <div class="blop-2 position-absolute"></div>
+        <div class="blop-3 position-absolute"></div>
+        <div class="blop-4 position-absolute"></div>
+        <div class="blop-5 position-absolute"></div>
+        <div class="blop-6 position-absolute"></div>
+        <div class="blop-7 position-absolute"></div>
+        <div class="blop-8 position-absolute"></div>
+        <div class="blop-9 position-absolute"></div>
+        <div class="blop-10 position-absolute"></div>
+        <div class="blop-11 position-absolute"></div>
+        <div class="blop-12 position-absolute"></div>
+        <div class="container g-0 position-realtive">
+          <h2 class="text-center  mb-3  opacity-0">baby names <br>a-z</h2>
+
+          <div class="container-fluid g-0 stations-container position-relative ">
+            <div class="station station1 position-relative d-inline-flex">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">a</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative">
+              <div class="step step-1">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-2">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station2 position-relative d-inline-flex">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">b</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative">
+              <div class="step step-3">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-4">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station3 position-relative d-inline-flex">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">c</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-5 ">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-6">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station4 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+              <h1><a class="text-decoration-none text-dark" href="">D</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-7">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-8">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station5 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">e</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-9">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-10">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station6 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">f</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-11">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-12">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station7 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">g</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-13">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-14">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station8 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">h</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-15">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-16">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station9 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">i</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-17">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-18">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station10 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">j</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-19">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-20">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station11 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">k</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-21">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-22">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station12 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">l</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-23">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-24">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station13 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">m</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-25">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-26">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station14 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">n</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-27">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-28">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station15 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">o</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-29">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-30">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station16 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">p</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-31">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-32">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station17 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">q</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-33">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-34">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station18 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">r</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-35">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-36">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station19 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">s</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-37">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-38">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station20 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">t</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-39">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-40">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station21 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">u</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-41">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-42">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station22 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">v</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-43">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-44">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station23 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">w</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-45">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-46">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station24 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">x</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-47">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-48">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station25 position-relative d-inline-flex d-none">
+              <div class="abcBlop1 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">y</a></h1>
+              </div>
+            </div>
+
+            <div class="steps position-relative d-none">
+              <div class="step step-49">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+              <div class="step step-50">
+                <img src="img/baby-names/baby-feet.png" alt="">
+              </div>
+            </div>
+
+            <div class="station station26 position-relative float-end d-inline-flex d-none">
+              <div class="abcBlop2 d-flex justify-content-center align-items-center">
+                <h1><a class="text-decoration-none text-dark" href="">z</a></h1>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <button class="btn seemoreBtn position-absolute mb-3 px-4 py-2 start-50 bottom-0 translate-middle-x" >see more</button>
+        <button class="btn seelessBtn d-none position-absolute mb-3 px-4 py-2 start-50 bottom-0 translate-middle-x" >see less</button>
+      </div>
+    </div>
+    
+    <div class="conatiner-fluid d-flex flex-column position-relative overflow-hidden" id="aiModel">
+      <div class="row g-0 ">
+        <h2 class="text-center  opacity-0">fetal's brain disease test</h2>
+      </div>
+      <div class="row g-0">
+        <div class="col-8 d-flex flex-column">
+          <div class="card my-2 rounded-0">
+            <div class="row g-0">
+              <div class="col-md-4 d-flex align-items-center">
+                <img src="img/ultrasonography-picture-ultrasound-scan-fetus-600nw-2112614582.webp" alt="" class="img-fluid">
+              </div>
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="card-body  px-3">
+                  <h3 class="card-title p-0 m-0">step 1</h3>
+                  <p class="card-body p-0 m-0">sonographic image</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card my-2 rounded-0 align-self-center">
+            <div class="row g-0">
+              <div class="col-md-4 d-flex align-items-center">
+                <img src="img/9793182_4204951.svg" alt="" class="img-fluid">
+              </div>
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="card-body px-3">
+                  <h3 class="card-title p-0 m-0">step-2</h3>
+                  <p class="card-body p-0 m-0">upload image</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card my-2 rounded-0 align-self-end">
+            <div class="row g-0">
+              <div class="col-md-4 d-flex align-items-center">
+                <img src="img/Untitled design.png" alt="" class="img-fluid">
+              </div>
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="card-body px-3">
+                  <h3 class="card-title p-0 m-0">step-3</h3>
+                  <p class="card-body p-0 m-0">Ai result</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 ">
+          <div class="blop-13 d-flex justify-content-start align-items-center text-center position-absolute">
+            <h2 class="text-white ms-3 opacity-0">information about <br> AI model and <br> its accuracy</h2>
+          </div>
+          <div class="blop-14 position-absolute">
+            <img src="img/WhatsApp_Image_2024-10-14_at_00.36.21_453c7054-removebg-preview 1.png" alt="">
+          </div>
+        </div>
+
+        
+      </div>
+
+
+      <!-- <div class="container bg-warning g-0">
+        <img src="img/Group 49.png" class="position-relative" alt="">
+        
+      </div> -->
+      <button class="btn px-3 align-self-center"><a href="" class="text-decoration-none text-dark">test</a></button>
+    </div>
+    
+    <div class="container-fluid position-relative my-5  overflow-hidden" id="articles">
+      <!-- <div class="blop-15 position-absolute"></div>
+      <div class="blop-16 position-absolute"></div> -->
+      <div class="row">
+        <div class="col-md-7 py-4 justify-content-evenly d-none d-md-flex">
+          <div class="left border border-2 rounded-5">
+            <img src="img/stock-vector-black-pregnant-woman-with-nature-and-leaves-background-concept-vector-illustration-in-flat-style-1487849414-transformed.jpeg" alt="">
+          </div>
+
+          <div class="right border border-2 rounded-5">
+            <img src="img/10292830.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <h2 class="text-center opacity-0">articles about fetal's <br> brain disease</h2>
+          <div class="row">
+            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title text-dark m-0">first disease</h3>
+              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+            </div>
+            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title text-dark m-0">first disease</h3>
+              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+            </div>
+            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title text-dark m-0">first disease</h3>
+              <p class="card-body p-0 m-0">This is some text within a card body.</p>
+            </div>
+          </div>
+
+          <div class="col-12 text-center">
+            <button class="btn px-3">
+              <a href="" class="text-decoration-none text-white">see more</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid position-relative overflow-hidden bg-danger" id="footer">
+      <div class="row">
+        <div class="blop-15"></div>
+      </div>
+      <div class="container">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, aperiam. Magnam dolorum ipsa quasi qui culpa pariatur a esse blanditiis minus expedita magni iusto, tenetur nulla eum! Totam consequatur voluptatem neque recusandae sint, aliquid non deleniti deserunt, minus facilis ea excepturi repellendus suscipit? Odit, dolorum accusantium nisi fugiat molestiae quas deleniti quia molestias laboriosam, qui ex pariatur, quos sequi iusto harum reiciendis perferendis repellendus! Blanditiis fugit soluta saepe dolore nemo veritatis incidunt, beatae eos? Aliquid, inventore impedit? Unde, eum vel quo non quasi eius eveniet. Illum unde a magni esse delectus deleniti voluptatibus quisquam tempora aliquid odit, similique maxime incidunt officia, quae tenetur. Sed laudantium, quas cumque, sequi earum libero labore animi a molestiae eaque alias dolorem officiis, excepturi aut placeat recusandae ipsam optio quia? Dolorum inventore doloremque a optio aperiam. Dolores eveniet deleniti ipsam reiciendis, ex magnam impedit atque fugiat animi architecto reprehenderit itaque repellendus exercitationem harum voluptate nam. Minus maiores, modi fuga nam corrupti quos at quaerat aliquam accusantium animi illum possimus eaque porro reiciendis voluptatibus ipsum a, vel nesciunt asperiores voluptatum odit? Ipsa ad voluptates eaque aperiam dolor voluptatum amet autem cumque iste facere magni dolorem itaque corrupti, enim aspernatur! Dolore commodi ea hic, harum similique ex.</p>
+      </div>
+    </div>
+
+    <script src="home/node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
