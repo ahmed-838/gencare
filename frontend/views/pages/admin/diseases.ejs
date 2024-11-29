@@ -11,7 +11,7 @@
       <h2>Add Disease Information</h2>
     </div>
     <div class="content">
-        <form action="/diseasesManagement/add" method="POST">
+        <form action="/diseasesManagement/add" method="POST" enctype="multipart/form-data" >
         <div class="user-details">
           
           <!-- Disease Name -->
@@ -23,7 +23,7 @@
           <!-- Disease Image URL -->
           <div class="input-box">
             <span class="details">Disease Image (URL)</span>
-            <input type="text" name="disease_image" placeholder="Enter Image URL" required>
+            <input type="file" name="disease_image" placeholder="Enter Image URL" required>
           </div>
 
           <!-- Disease Summary -->

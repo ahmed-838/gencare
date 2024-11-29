@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://kit.fontawesome.com/608e9d3ec2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/diseasedisplay/diseasedisplay.css">
+    <title>Disease </title>
+</head>
+<body>
+
+<section class="Section1" id="DiseaseList">
+    <div class="background">
+        <object type="image/svg+xml" data="https://cdn.svgator.com/images/2022/06/background-svg-image-pattern.svg" alt="Animated background with patterns changing shapes and moving around" width="100%">
+            <img src="https://cdn.svgator.com/images/2022/06/background-svg-image-pattern.svg" alt="Animated background with patterns changing shapes and moving around" width="100%"/>
+        </object>
+    </div>
+    <div class="container swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper"></ul>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev swipper-slide-btn"></div>
+            <div class="swiper-button-next swipper-slide-btn"></div>
+        </div>
+    </div>
+</section>
+
+<section class="Section2" id="DiseaseDetails">
+    <div class="containerBox">
+        <div class="parent-container">
+            <section class="DiseaseDetail">
+                <div class="container" style="background-color: transparent">
+                    <button type="button" class="btn">
+                        <a href="#DiseaseList"><i class="fa-solid fa-arrow-left"></i>Go to List</a>
+                    </button>
+                    <div class="Disease_detail_content grid">
+                        <div class="Disease_img">
+                            <img src="" alt="Disease Image">
+                        </div>
+                        <div class="Disease_info">
+                            <div class="items title name">
+                                <span></span>
+                            </div>
+                            <div class="items description">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gif"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/diseasedisplay/diseasedisplay.js"></script>
+</body>
+</html>

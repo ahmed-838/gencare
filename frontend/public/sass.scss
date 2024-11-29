@@ -791,8 +791,35 @@ ul[class="navbar-nav ms-auto mb-2 mb-lg-0"] {
 //     z-index: 1;
 // }
 #footer{
+    background-color: $primary;
+    @include raleway-bold();
     .blop-15{
-        @include blop(350px, -0%, 50%, none, none, 53% 47% 52% 48% / 59% 76% 24% 41% );
-        background: $secondary-hvr;
+        @include blop(350px, -50%, 50%, none, none, 67% 33% 46% 54% / 46% 50% 50% 54% );
+        background: white;
+        position: absolute;
+        translate: 50% 0;
+        animation: ftrblp 4s cubic-bezier(.4,0,.66,.99) infinite forwards alternate;
+    }
+    .blop-16{
+        background: url(img/Quantum\ brain\ wave!.gif);
+        @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
+        z-index: 1;
+    }
+    .blop-17{
+        background: url(img/iOs\ Application-Icon-unscreen.gif);
+        @include blop(250px, none, none, none, none, 43% 57% 39% 61% / 64% 53% 47% 36% );
+        z-index: 1;
+    }
+    h2{
+        @include roboto-bold();
+    }
+    h3{
+        @include raleway-bold();
+    }
+    .row:first-child{
+        translate: 0 -50%;
+    }
+    ::placeholder{
+        color: $primary;
     }
 }
