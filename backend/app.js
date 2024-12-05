@@ -19,7 +19,7 @@ app.use('/home/node_modules',
      express.static(path.join(__dirname, '../frontend/public/app_modules/home_modules/node_modules')));
 
     app.set('view engine', 'ejs');
-    app.set('views', '../frontend/views');
+    app.set('views', path.join(__dirname, '../frontend/views'));
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 

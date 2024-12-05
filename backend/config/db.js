@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+
+        const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gen_care';
+        await mongoose.connect(dbURI);
+
         console.log('Connected to MongoDB');
     } catch (err) {
         console.error('Error connecting to MongoDB', err);
-        process.exit(1); 
+        console.log('Running without database connection...');
     }
 };
 
