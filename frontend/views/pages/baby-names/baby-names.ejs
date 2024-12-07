@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/baby-names-components/bootstrap.min.css">
+    <link rel="stylesheet" href="/baby-names-components/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/baby-names-components/baby-names.css">
+    <title>baby-names</title>
+</head>
+<body>
+  <div class="container-fluid my-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold">Baby Names</h2>
+        <p class="text-muted">Explore names from A to Z</p>
+    </div>
+    
+    <div class="letters-container">
+        <% babyNames.forEach(obj => { %>
+            <div class="letter-card">
+                <div class="letter-content">
+                    <div class="letter-front">
+                        <div class="gif-container">
+                            <img src="<%= obj.image %>.gif" alt="baby gif" class="baby-gif">
+                        </div>
+                    </div>
+                    <div class="letter-back">
+                        <span class="letter"><%= obj.letter.toUpperCase() %></span>
+                        <a href="/baby-names/<%= obj.letter%>" class="explore-btn">Explore Names</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="seemoreBtn btn-custom">See More</button>
+        <button class="seelessBtn btn-custom d-none">See Less</button>
+    </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  <script src="/baby-names-components/baby-names.js"></script>
+</body>
+</html>

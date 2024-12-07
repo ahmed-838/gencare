@@ -1,3 +1,132 @@
+class AuthService {
+    static getToken() {
+        return localStorage.getItem('token');
+    }
+
+    static setToken(token) {
+        localStorage.setItem('token', token);
+    }
+
+    static removeToken() {
+        localStorage.removeItem('token');
+    }
+
+    static async verifyToken() {
+        const token = this.getToken();
+        if (!token) return null;
+
+        try {
+            const response = await fetch('/api/check-auth/check-status', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (!response.ok) {
+                this.removeToken();
+                return null;
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Token verification error:', error);
+            this.removeToken();
+            return null;
+        }
+    }
+}
+
+class NavbarManager {
+    constructor() {
+        this.elements = {
+            management: document.querySelector('.management-item'),
+            authButtons: document.querySelector('.auth-buttons'),
+            logoutButton: document.querySelector('.logout-btn')
+        };
+        
+        this.hideAllButtons();
+        this.init();
+    }
+
+    hideAllButtons() {
+        this.elements.management.style.display = 'none';
+        this.elements.authButtons.style.display = 'none';
+        this.elements.logoutButton.style.display = 'none';
+    }
+
+    async init() {
+        await this.updateNavbarState();
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        this.elements.logoutButton?.addEventListener('click', () => this.handleLogout());
+    }
+
+    async updateNavbarState() {
+        try {
+            const authData = await AuthService.verifyToken();
+            
+            this.hideAllButtons();
+            
+            if (!authData?.success) {
+                this.showGuestView();
+                return;
+            }
+
+            this.showAuthenticatedView(authData.user);
+        } catch (error) {
+            console.error('Error updating navbar state:', error);
+            this.showGuestView();
+        }
+    }
+
+    showGuestView() {
+        this.hideAllButtons();
+        
+        setTimeout(() => {
+            this.elements.authButtons.style.display = 'flex';
+        }, 0);
+    }
+
+    showAuthenticatedView(user) {
+        this.hideAllButtons();
+        
+        setTimeout(() => {
+            if (user.role === 'admin') {
+                this.elements.management.style.display = 'block';
+            }
+            this.elements.logoutButton.style.display = 'block';
+        }, 0);
+    }
+
+    async handleLogout() {
+        try {
+            this.hideAllButtons();
+            AuthService.removeToken();
+            this.showGuestView();
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    }
+}
+    
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarManager = new NavbarManager();
+    
+    const seeMoreBtn = document.querySelector('.seemoreBtn');
+    const seeLessBtn = document.querySelector('.seelessBtn');
+    
+    seeMoreBtn?.addEventListener('click', () => {
+        toggleLetters(true);
+    });
+    
+    seeLessBtn?.addEventListener('click', () => {
+        toggleLetters(false);
+    });
+});
+
 handleClick = (ele)=>{
     var navlist = document.getElementsByClassName("nav-link")
     for(let i = 0 ; i < navlist.length ; i++){
@@ -39,39 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('carouselExample').addEventListener('slid.bs.carousel', addAnimationToActiveSlide);
 });
 
-
-var stationContainer = document.querySelector('.stations-container')
-var staionClass = document.querySelectorAll(".station")
-var stepClass = document.querySelectorAll(".steps")
-var seemoreBtn = document.querySelector('.seemoreBtn')
-var seeLessBtn = document.querySelector('.seelessBtn')
-var blop2 = document.querySelector('.blop-2')
-var blop3 = document.querySelector('.blop-3')
-var svg = document.getElementById('svg')
-console.log(svg)
-svg.style.top= "-30%"
-seemoreBtn.addEventListener('click' , (e)=>{
-    console.log(stationContainer.children[1])
-        for(let i = 5 ; i < stationContainer.children.length ; i++){
-            stationContainer.children[i].classList.toggle('d-none')
-        }
-        stationContainer.style.height="5150px";
-        seemoreBtn.classList.toggle('d-none');
-        seeLessBtn.classList.toggle('d-none');
-        blop2.style.top="0%";
-        svg.style.top= "-47%";
-    })
-    seeLessBtn.addEventListener('click' , (e)=>{
-        console.log(stationContainer.children[1])
-        for(let i = 5 ; i < stationContainer.children.length ; i++){
-            stationContainer.children[i].classList.toggle('d-none')
-        }
-        stationContainer.style.height="700px"
-        seemoreBtn.classList.toggle('d-none')
-        seeLessBtn.classList.toggle('d-none')
-        blop2.style.top="5%"
-        svg.style.top='-30%'
-})
 revealFunction = (ele) =>{
     const rect = ele.getBoundingClientRect();
     return(
@@ -82,7 +178,7 @@ revealFunction = (ele) =>{
 
 var h2 = document.querySelectorAll('h2')
 console.log(h2)
-var cardArticle = document.querySelectorAll('#articles .card')
+var cardArticle = document.querySelectorAll('#articles .card,#aiModel .card')
 document.addEventListener('scroll' , ()=>{
     for(let i = 1 ; i < h2.length ; i++  ){
         if(revealFunction(h2[i])){

@@ -29,6 +29,9 @@ const weekRoutes = require('./routes/weekRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const adminDashboard = require('./routes/adminDashboardRoutes');
 const AIpageRoutes = require('./routes/ai_pageRoutes');
+const authRoutes = require('./routes/authRoutes');
+const checkAuthenticationRoutes = require('./routes/checkAuthenticationRoutes');
+const babyNamesRoutes = require('./routes/babyNamesRoutes');
 
 
 
@@ -38,6 +41,9 @@ app.use('/', homeRoutes);
 app.use('/diseasesManagement', diseaseRoutes);
 app.use('/dashboard', adminDashboard);
 app.use('/ai-page', AIpageRoutes);
+app.use('/auth', authRoutes);
+app.use('/api/check-auth', checkAuthenticationRoutes);
+app.use('/baby-names', babyNamesRoutes);
 
 
 module.exports = app;
