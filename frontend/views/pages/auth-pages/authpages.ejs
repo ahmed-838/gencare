@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="/auth-components/authPages.css" />
     <title>Sign in & Sign up Form</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
   <body>
     <div class="container">
@@ -27,19 +29,17 @@
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
+
+              <a href="/auth/google?mode=signin" class="social-icon" id="google-signin">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
+
             </div>
+            <p>
+              <a href="/auth/reset-password" class="forgot-password" style="color: #007bff; text-decoration: none; font-weight: bold;">
+                Forgot your password?
+              </a>
+            </p>
           </form>
           <form action="/auth/register" class="sign-up-form" method="POST" >
             <h2 class="title">Sign up</h2>
@@ -61,18 +61,9 @@
             </div>
             <input type="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
+
+              <a href="/auth/google?mode=signup" class="social-icon" id="google-signup">
                 <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
               </a>
             </div>
           </form>
@@ -90,7 +81,6 @@
               Sign up
             </button>
           </div>
-          <img src="img/log.svg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -100,43 +90,11 @@
               Sign in
             </button>
           </div>
-          <img src="img/register.svg" class="image" alt="" />
         </div>
       </div>
     </div>
 
     <script>
-      // التحقق من نوع الصفحة المطلوبة
-      window.onload = async function() {
-        // التحقق من حالة تسجيل الدخول أولاً
-        const token = localStorage.getItem('token');
-        if (token) {
-          try {
-            const response = await fetch('/api/check-auth/check-status', {
-              headers: {
-                'Authorization': `Bearer ${token}`
-              }
-            });
-            const data = await response.json();
-            
-            if (data.success && data.user) {
-              // المستخدم مسجل دخول بالفعل، قم بتحويله للصفحة الرئيسية
-              window.location.href = '/';
-              return;
-            }
-          } catch (error) {
-            console.error('Error checking auth status:', error);
-          }
-        }
-
-        // إذا وصلنا هنا، فالمستخدم غير مسجل دخول
-        // تابع مع منطق عرض الصفحة المناسبة
-        const page = '<%= page %>';
-        if (page === 'register') {
-          const container = document.querySelector(".container");
-          container.classList.add("sign-up-mode");
-        }
-      }
 
       async function handleLogin(event) {
         event.preventDefault();
@@ -170,6 +128,55 @@
           alert('حدث خطأ أثناء تسجيل الدخول');
         }
       }
+
+      // تعديل دالة handleGoogleLogin لتعمل مع كلا الزرين
+      function handleGoogleLogin() {
+        const googleSigninBtn = document.getElementById('google-signin');
+        const googleSignupBtn = document.getElementById('google-signup');
+
+        googleSigninBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            window.location.href = '/auth/google?mode=signin';
+          } catch (error) {
+            console.error('خطأ في تسجيل الدخول باستخدام جوجل:', error);
+          }
+        });
+
+        googleSignupBtn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            window.location.href = '/auth/google?mode=signup';
+          } catch (error) {
+            console.error('خطأ في التسجيل باستخدام جوجل:', error);
+          }
+        });
+      }
+
+      // تفعيل الدوال عند تحميل الصفحة
+      window.addEventListener('load', () => {
+        handleGoogleLogin();
+      });
+
+      const handleLogout = () => {
+        // مسح التوكن من localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        
+        // مسح الكوكيز
+        document.cookie = 'user_info=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        
+        // إعادة توجيه المستخدم إلى الصفحة الرئيسية
+        window.location.href = '/';
+      };
+
+      // أضف مستمع الحدث لزر تسجيل الخروج
+      document.addEventListener('DOMContentLoaded', () => {
+        const logoutButton = document.querySelector('.logout-button');
+        if (logoutButton) {
+          logoutButton.addEventListener('click', handleLogout);
+        }
+      });
     </script>
     <script src="/auth-components/authforms.js"></script>
   </body>

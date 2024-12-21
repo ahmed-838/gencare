@@ -4,7 +4,8 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-
+const nodemailer = require('nodemailer');
+const cors = require('cors');
 dotenv.config();
 
 router.get('/login', (req, res) => {
@@ -153,6 +154,62 @@ router.post('/register', async (req, res) => {
             error: process.env.NODE_ENV === 'development' ? error.message : 'خطأ في الخادم'
         });
     }
+});
+
+router.get('/reset-password', (req, res) => {
+    res.render('pages/auth-pages/forgot-password');
+
+});
+
+router.post('/reset-password', async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(404).json({ message: 'البريد الإلكتروني غير موجود' });
+    }
+
+    const verificationCode = Math.floor(100000 + Math.random() * 900000); // رمز تحقق واحد
+
+    router.use(
+        cors({
+            credentials: true,
+            origin: "http://localhost:3000"
+        })
+    );
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com', 
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+    });
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        return res.status(500).json({ message: 'يرجى التحقق من إعدادات البريد الإلكتروني' });
+    }
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'رمز التحقق',
+        text: `رمز التحقق الخاص بك هو: ${verificationCode}`,
+    };
+
+    transporter.sendMail(mailOptions, async (error, info) => {
+        if (error) {
+            console.error('خطأ في إرسال البريد الإلكتروني:', error);
+            return res.status(500).json({ message: 'حدث خطأ أثناء إرسال البريد الإلكتروني', error: error.message });
+        }
+
+        // تخزين رمز التحقق في قاعدة البيانات مع معرف المستخدم
+        user.verificationCode = verificationCode; // تأكد من وجود حقل verificationCode في نموذج المستخدم
+        await user.save();
+
+        res.status(200).json({ message: 'تم إرسال رمز التحقق إلى بريدك الإلكتروني' });
+    });
 });
 
 module.exports = router;

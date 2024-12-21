@@ -1,16 +1,29 @@
 class AuthService {
     static getToken() {
-        return localStorage.getItem('token');
+        return localStorage.getItem('token') || localStorage.getItem('googleToken');
     }
 
-    static setToken(token) {
-        localStorage.setItem('token', token);
+    static setToken(token, isGoogle = false) {
+        console.log('Setting token:', { token, isGoogle });
+        if (isGoogle) {
+            localStorage.setItem('googleToken', token);
+            localStorage.setItem('isGoogleUser', 'true');
+        } else {
+            localStorage.setItem('token', token);
+        }
     }
 
     static removeToken() {
         localStorage.removeItem('token');
+        localStorage.removeItem('googleToken');
+        localStorage.removeItem('isGoogleUser');
     }
 
+    static isGoogleUser() {
+        return localStorage.getItem('isGoogleUser') === 'true';
+    }
+
+    // إضافة دالة التحقق من التوكن
     static async verifyToken() {
         const token = this.getToken();
         if (!token) return null;
@@ -18,8 +31,10 @@ class AuthService {
         try {
             const response = await fetch('/api/check-auth/check-status', {
                 headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
             });
             
             if (!response.ok) {
@@ -27,9 +42,14 @@ class AuthService {
                 return null;
             }
 
-            return await response.json();
+            const data = await response.json();
+            return {
+                success: true,
+                user: data.user,
+                isGoogle: this.isGoogleUser()
+            };
         } catch (error) {
-            console.error('Token verification error:', error);
+            console.error('خطأ في التحقق من التوكن:', error);
             this.removeToken();
             return null;
         }
@@ -43,153 +63,80 @@ class NavbarManager {
             authButtons: document.querySelector('.auth-buttons'),
             logoutButton: document.querySelector('.logout-btn')
         };
-        
-        this.hideAllButtons();
         this.init();
-    }
-
-    hideAllButtons() {
-        this.elements.management.style.display = 'none';
-        this.elements.authButtons.style.display = 'none';
-        this.elements.logoutButton.style.display = 'none';
     }
 
     async init() {
         await this.updateNavbarState();
-        this.setupEventListeners();
-    }
-
-    setupEventListeners() {
         this.elements.logoutButton?.addEventListener('click', () => this.handleLogout());
     }
 
     async updateNavbarState() {
-        try {
+        const token = AuthService.getToken();
+        console.log('التوكن الحالي:', token);
+
+        // إخفاء جميع العناصر أولاً
+        Object.values(this.elements).forEach(element => {
+            if (element) element.style.display = 'none';
+        });
+
+        if (token) {
             const authData = await AuthService.verifyToken();
-            
-            this.hideAllButtons();
-            
-            if (!authData?.success) {
-                this.showGuestView();
-                return;
+            if (authData?.success) {
+                console.log('المستخدم مسجل الدخول');
+                if (this.elements.logoutButton) {
+                    this.elements.logoutButton.style.display = 'block';
+                }
+                if (authData.user?.role === 'admin' && this.elements.management) {
+                    this.elements.management.style.display = 'block';
+                }
+            } else {
+                console.log('فشل التحقق من التوكن');
+                if (this.elements.authButtons) {
+                    this.elements.authButtons.style.display = 'flex';
+                }
             }
-
-            this.showAuthenticatedView(authData.user);
-        } catch (error) {
-            console.error('Error updating navbar state:', error);
-            this.showGuestView();
+        } else {
+            console.log('المستخدم غير مسجل الدخول');
+            if (this.elements.authButtons) {
+                this.elements.authButtons.style.display = 'flex';
+            }
         }
-    }
-
-    showGuestView() {
-        this.hideAllButtons();
-        
-        setTimeout(() => {
-            this.elements.authButtons.style.display = 'flex';
-        }, 0);
-    }
-
-    showAuthenticatedView(user) {
-        this.hideAllButtons();
-        
-        setTimeout(() => {
-            if (user.role === 'admin') {
-                this.elements.management.style.display = 'block';
-            }
-            this.elements.logoutButton.style.display = 'block';
-        }, 0);
     }
 
     async handleLogout() {
-        try {
-            this.hideAllButtons();
-            AuthService.removeToken();
-            this.showGuestView();
-            window.location.href = '/';
-        } catch (error) {
-            console.error('Logout error:', error);
-        }
-    }
-}
-    
-document.addEventListener('DOMContentLoaded', () => {
-    const navbarManager = new NavbarManager();
-    
-    const seeMoreBtn = document.querySelector('.seemoreBtn');
-    const seeLessBtn = document.querySelector('.seelessBtn');
-    
-    seeMoreBtn?.addEventListener('click', () => {
-        toggleLetters(true);
-    });
-    
-    seeLessBtn?.addEventListener('click', () => {
-        toggleLetters(false);
-    });
-});
-
-handleClick = (ele)=>{
-    var navlist = document.getElementsByClassName("nav-link")
-    for(let i = 0 ; i < navlist.length ; i++){
-        navlist[i].classList.remove("active")
-    }
-    ele.classList.add("active")
-}
-var nav = document.getElementById('nav')
-window.addEventListener('scroll' , ()=>{
-    if(document.documentElement.scrollTop>0){
-        nav.classList.add("nav-scroll")
-
-    }else{
-        nav.classList.remove('nav-scroll')
-    }
-})
-document.addEventListener("DOMContentLoaded", function() {
-    // Function to add animation class to the active slide's h1
-    function addAnimationToActiveSlide() {
-        // Remove the animation class from all h1 elements first
-        document.querySelectorAll('.carousel-item h1').forEach(h1 => {
-            h1.classList.remove('animate__animated', 'animate__fadeInDown','opacity-100');
-        });
-        
-        // Find the active carousel item and add the class to its h1
-        const activeSlide = document.querySelector('.carousel-inner .carousel-item.active');
-        if (activeSlide) {
-            const h1 = activeSlide.querySelector('.card-body h1');
-            if (h1) {
-                h1.classList.add('animate__animated', 'animate__fadeInDown','opacity-100');
+        if (AuthService.isGoogleUser()) {
+            try {
+                if (window.google) {
+                    await google.accounts.oauth2.revoke(AuthService.getToken());
+                }
+            } catch (error) {
+                console.error('خطأ في تسجيل الخروج من جوجل:', error);
             }
         }
+        AuthService.removeToken();
+        window.location.href = '/';
     }
-
-    // Initialize the animation for the first active slide
-    addAnimationToActiveSlide();
-
-    // Listen for the Bootstrap carousel slide event and call the function
-    document.getElementById('carouselExample').addEventListener('slid.bs.carousel', addAnimationToActiveSlide);
-});
-
-revealFunction = (ele) =>{
-    const rect = ele.getBoundingClientRect();
-    return(
-        rect.bottom > 0 &&
-        rect.top < (window.innerHeight - 50)
-    )
 }
 
-var h2 = document.querySelectorAll('h2')
-console.log(h2)
-var cardArticle = document.querySelectorAll('#articles .card,#aiModel .card')
-document.addEventListener('scroll' , ()=>{
-    for(let i = 1 ; i < h2.length ; i++  ){
-        if(revealFunction(h2[i])){
-            h2[i].classList.add('animate__animated','animate__fadeInLeft','opacity-100')
-            h2[i].classList.remove('opacity-0')
+// تنفيذ الكود عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const googleAuth = urlParams.get('google_auth');
+        
+        console.log('URL Parameters:', { token, googleAuth });
+
+        if (token && googleAuth === 'success') {
+            console.log('Found Google auth token');
+            console.log('Token is valid, setting in localStorage');
+            AuthService.setToken(token, true);
+            window.history.replaceState({}, document.title, window.location.pathname);
         }
+    } catch (error) {
+        console.error('Error processing auth:', error);
     }
-    for(let i = 0 ; i < cardArticle.length ; i++){
-        if(revealFunction(cardArticle[i])){
-            cardArticle[i].classList.add('animate__animated','animate__fadeInRight','opacity-100')
-            cardArticle[i].classList.remove('opacity-0')
-        }
-    }
-})
+
+    new NavbarManager();
+});

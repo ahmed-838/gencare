@@ -29,25 +29,21 @@ class AuthMiddleware {
     }
 
     static isAdmin(req, res, next) {
-        if (!req.user) {
-            return AuthMiddleware.sendUnauthorized(res, 'يجب تسجيل الدخول أولاً');
+        if (AuthMiddleware.checkAuthentication(req, res)) {
+            if (req.user.role !== 'admin') {
+                return AuthMiddleware.sendForbidden(res);
+            }
+            next();
         }
-        
-        if (req.user.role !== 'admin') {
-            return AuthMiddleware.sendForbidden(res);
-        }
-        next();
     }
 
     static isUser(req, res, next) {
-        if (!req.user) {
-            return AuthMiddleware.sendUnauthorized(res, 'يجب تسجيل الدخول أولاً');
+        if (AuthMiddleware.checkAuthentication(req, res)) {
+            if (req.user.role !== 'user') {
+                return AuthMiddleware.sendForbidden(res);
+            }
+            next();
         }
-        
-        if (req.user.role !== 'user') {
-            return AuthMiddleware.sendForbidden(res);
-        }
-        next();
     }
 
     static isAuthenticated(req, res, next) {
@@ -75,9 +71,18 @@ class AuthMiddleware {
     static sendServerError(res) {
         return res.status(500).json({
             success: false,
-            message: 'خطأ في الخادم',
+            message: 'حدث خطأ في الخادم. الرجاء المحاولة مرة أخرى',
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined,
             user: null
         });
+    }
+
+    static checkAuthentication(req, res) {
+        if (!req.user) {
+            AuthMiddleware.sendUnauthorized(res, 'يجب تسجيل الدخول أولاً');
+            return false;
+        }
+        return true;
     }
 }
 

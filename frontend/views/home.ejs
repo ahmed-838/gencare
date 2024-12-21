@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/home/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/home/node_modules\animate.css\animate.min.css">
+    <link rel="stylesheet" href="/home/node_modules/animate.css/animate.min.css">
     <link rel="stylesheet" href="sass.css">
     <link rel="stylesheet" href="weekDisplay.css">
+    <script src="/js/cookieConsent.js"></script>
 </head>
 <body>
     <div class="container-lg">
@@ -26,7 +27,6 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <!-- Management Button (Admin Only) -->
                     <li class="nav-item mx-1 text-center management-item" style="display: none;">
                         <a class="nav-link active" onclick="handleClick(this)" href="dashboard">Management</a>
                     </li>
@@ -56,14 +56,14 @@
                                 <a href="/auth/register" class="text-decoration-none text-dark">Sign Up</a>
                             </button>
                         </div>
-                        
-                        <!-- Logout Button -->
-                        <button class="btn mb-2 mb-lg-0 logout-btn" style="display: none;">
-                            <span class="text-decoration-none text-dark">Log Out</span>
-                        </button>
                     </li>
+                    
+                    <!-- Logout Button -->
+                    <button class="btn mb-2 mb-lg-0 logout-btn" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i>Logout
+                    </button>
                 </ul>
-            </div>
+              </div>
             </div>
         </nav>
     </div>
@@ -139,8 +139,6 @@
       </div>
   </div>
     
-
-<!-- ahmed updates  -->
 
   <div class="container-fluid my-4" id="pregnancy-weeks">
       <h2 class="text-center mb-4 animate__animated animate__fadeInLeft">pregnancy week by week</h2>
@@ -256,7 +254,7 @@
       <div class="container g-0 stations-container d-flex flex-column  position-relative ">
         <div class="station station1 position-relative d-inline-flex">
           <div class="abcBlop1 d-flex justify-content-center align-items-center">
-            <h1><a class="text-decoration-none text-dark" href="">a</a></h1>
+            <h1><a class="text-decoration-none text-dark" href="/baby-names/a">a</a></h1>
           </div>
         </div>
 
@@ -270,7 +268,7 @@
         </div>
         <div class="station station2 position-relative d-inline-flex">
           <div class="abcBlop2 d-flex justify-content-center align-items-center">
-            <h1><a class="text-decoration-none text-dark" href="">b</a></h1>
+            <h1><a class="text-decoration-none text-dark" href="/baby-names/b">b</a></h1>
           </div>
         </div>
 
@@ -285,7 +283,7 @@
 
         <div class="station station3 position-relative d-inline-flex">
           <div class="abcBlop1 d-flex justify-content-center align-items-center">
-            <h1><a class="text-decoration-none text-dark" href="">c</a></h1>
+            <h1><a class="text-decoration-none text-dark" href="/baby-names/c">c</a></h1>
           </div>
         </div>
 
@@ -355,7 +353,9 @@
         
       </div>
 
-      <button class="btn px-3 align-self-center"><a href="ai-page" class="text-decoration-none text-white">test</a></button>
+      <button class="btn px-3 align-self-center">
+        <a href="#" onclick="checkAuthAndRedirect(event)" class="text-decoration-none text-white">test</a>
+      </button>
     </div>
     
     <div class="container-fluid position-relative my-5  overflow-hidden" id="articles">
@@ -372,19 +372,8 @@
 
         <div class="col-md-5">
           <h2 class="text-center opacity-0">articles about fetal's <br> brain disease</h2>
-          <div class="row">
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title text-dark m-0">first disease</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
-            </div>
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title text-dark m-0">first disease</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
-            </div>
-            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
-              <h3 class="card-title text-dark m-0">first disease</h3>
-              <p class="card-body p-0 m-0">This is some text within a card body.</p>
-            </div>
+          <div class="row" id="diseases-container">
+            <!-- يتم ملء هذا القسم ديناميكياً -->
           </div>
 
           <div class="col-12 text-center">
@@ -437,5 +426,78 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
+    <script src="home_script.js"></script>
+
+    <script> 
+    async function checkAuthAndRedirect(event) {
+      event.preventDefault();
+      
+      try {
+        const googleToken = localStorage.getItem('googleToken');
+        
+        const response = await fetch('/api/check-auth/check-status', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token') || googleToken}`,
+            'Auth-Type': googleToken ? 'google' : 'traditional'
+          },
+          credentials: 'include'
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          window.location.href = 'ai-page';
+        } else {
+          alert('يرجى تسجيل الدخول أولاً');
+          window.location.href = '/auth/login';
+        }
+      } catch (error) {
+        console.error('خطأ:', error);
+        alert('حدث خطأ، يرجى المحاولة مرة أخرى');
+      }
+    }   
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/diseasesManagement/getdata');
+        if (!response.ok) {
+          throw new Error('فشل في جلب البيانات');
+        }
+        
+        const diseases = await response.json();
+        const container = document.getElementById('diseases-container');
+        
+        // أخذ أول 3 أمراض فقط
+        const firstThreeDiseases = diseases.slice(0, 3);
+        
+        firstThreeDiseases.forEach(disease => {
+          const diseaseElement = `
+            <div class="opacity-0 col-4 col-md-10 card ps-2 py-3 my-4 border-0 border-start border-5 bg-transparent">
+              <h3 class="card-title text-dark m-0">
+                <a href="/diseasesManagement/display  " class="text-decoration-none text-dark">
+                  ${disease.disease_name} 
+                </a>
+              </h3>
+              <p class="card-body p-0 m-0">${disease.disease_summary.substring(0, 100)}...</p>
+            </div>
+          `;
+          container.innerHTML += diseaseElement;
+        });
+        
+        // تفعيل تأثيرات الظهور
+        const cards = document.querySelectorAll('#diseases-container .opacity-0');
+        cards.forEach(card => {
+          card.classList.remove('opacity-0');
+        });
+        
+      } catch (error) {
+        console.error('خطأ في جلب البيانات:', error);
+      }
+    });
+    </script>
+
 </body>
 </html>
